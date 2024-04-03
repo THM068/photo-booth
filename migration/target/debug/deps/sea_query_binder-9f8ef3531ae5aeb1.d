@@ -1,0 +1,10 @@
+/Users/tma24/private_projects/learn-rust/backery-backend/migration/target/debug/deps/libsea_query_binder-9f8ef3531ae5aeb1.rmeta: /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/lib.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx_mysql.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/values.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx.rs
+
+/Users/tma24/private_projects/learn-rust/backery-backend/migration/target/debug/deps/libsea_query_binder-9f8ef3531ae5aeb1.rlib: /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/lib.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx_mysql.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/values.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx.rs
+
+/Users/tma24/private_projects/learn-rust/backery-backend/migration/target/debug/deps/sea_query_binder-9f8ef3531ae5aeb1.d: /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/lib.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx_mysql.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/values.rs /Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx.rs
+
+/Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/lib.rs:
+/Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx_mysql.rs:
+/Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/values.rs:
+/Users/tma24/.cargo/registry/src/index.crates.io-6f17d22bba15001f/sea-query-binder-0.5.0/src/sqlx.rs:
