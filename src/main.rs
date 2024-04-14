@@ -1,4 +1,4 @@
-use rocket::routes;
+use rocket::{catchers, routes};
 use rocket_dyn_templates::Template;
 use sea_orm::{
     ConnectionTrait, entity::prelude::*,
@@ -19,7 +19,8 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::Sh
             .mount("/", routes![
                 controllers::home::index,
                 controllers::home::contact,
-                controllers::home::about
+                controllers::home::about,
+                controllers::home::url_shortener
             ])
             .mount("/api/bakery", routes![
                 controllers::bakery::create,
@@ -28,6 +29,7 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::Sh
                 controllers::bakery::index,
             ])
             .mount("/public", rocket::fs::FileServer::from("static/"))
+            .register("/", catchers![controllers::home::not_found   ])
             .attach(Template::fairing());
 
     Ok(rocket.into())
