@@ -2,17 +2,22 @@ use rocket::{catchers, routes};
 use rocket_dyn_templates::Template;
 use sea_orm::{
     ConnectionTrait, entity::prelude::*,
-    SqlxPostgresConnector,
+    SqlxPostgresConnector, DatabaseConnection
 };
 use sqlx::PgPool;
+use sea_orm_migration::MigratorTrait;
+use crate::migrator::Migrator;
 
 mod controllers;
 mod entities;
 mod repositories;
+mod migrator;
 
 #[shuttle_runtime::main]
 async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::ShuttleRocket {
-    let conn = SqlxPostgresConnector::from_sqlx_postgres_pool(pool);
+    let conn: DatabaseConnection = SqlxPostgresConnector::from_sqlx_postgres_pool(pool);
+
+    Migrator::up(&conn, None).await.unwrap();
     let rocket =
         rocket::build()
             .manage(conn)
