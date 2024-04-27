@@ -2,7 +2,7 @@ use crate::entities::{contact, contact::*, prelude::*};
 use rocket::form::{Contextual, Form};
 use rocket::request::FlashMessage;
 use rocket::response::{Flash, Redirect};
-use rocket::{get, post, State};
+use rocket::{delete, get, post, State};
 use rocket_dyn_templates::{context, Template};
 use sea_orm::*;
 
@@ -66,6 +66,20 @@ pub fn new_contact() -> Template {
             title: "New Contact"
         },
     )
+}
+#[delete("/<id>")]
+pub async fn delete_contact(id: i32, db: &State<DatabaseConnection>) -> String {
+    let db = db as &DatabaseConnection;
+    let delete_result = Contact::delete_by_id(id).exec(db).await;
+
+    match delete_result {
+        Ok(_) => {
+            "".to_string()
+        },
+        Err(_) => {
+            "".to_string()
+        }
+    }
 }
 #[post("/save", data = "<contact_form>")]
 pub async fn save_contact(

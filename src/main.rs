@@ -31,6 +31,7 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::Sh
                 controllers::contact::contact_list,
                 controllers::contact::new_contact,
                 controllers::contact::save_contact,
+                controllers::contact::delete_contact,
             ],
         )
         .mount(

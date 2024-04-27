@@ -86,13 +86,13 @@
                             <!-- tag::rowactions[] -->
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex gap-x-2">
                                 <a class="text-indigo-400 hover:text-indigo-900"
-                                   th:href="@{/contacts/{id}/edit(id=${contact.id.value()})}">Edit</a>
+                                   href="/contacts/{{id}}/edit">Edit</a>
                                 <a class="text-indigo-400 hover:text-indigo-900"
                                    th:href="@{/contacts/{id}(id=${contact.id.value()})}">View</a>
                                 <a href="#"
                                    class="text-indigo-400 hover:text-indigo-900"
-                                   hx:delete="@{/contacts/{id}(id=${contact.id.value()})}"
-                                   hx:confirm="|Are you sure you want to delete the contact ${contact.givenName} ${contact.familyName}?|"
+                                   hx-delete="/contacts/{{id}}"
+                                   hx-confirm="|Are you sure you want to delete the contact ${contact.givenName} ${contact.familyName}?|"
                                    hx-swap="outerHTML swap:1s"
                                    hx-target="closest tr">Delete</a> <!--.-->
                             </td>
