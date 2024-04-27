@@ -1,0 +1,46 @@
+{{#*inline "page"}}
+
+    {{#if message}}
+        <div class="alert alert-success">{{message}}</div>
+    {{/if}}
+
+    <div class="sm:flex sm:items-center mb-4">
+        <div class="sm:flex-auto">
+            <h1 class="text-base font-semibold leading-6 text-gray-900"> <!--.-->
+                <span>New contact</span>
+            </h1>
+            <p class="mt-2 text-sm text-gray-700">
+                <span>Add a new contact to your list of contacts.</span>
+            </p>
+        </div>
+    </div>
+    <form action="/contacts/save" method="post">
+        <label class="block text-sm font-medium leading-6 text-gray-900">
+            Given Name
+        </label>
+        <div class="relative mt-2 rounded-md shadow-sm">
+            <input type="text" name="given_name" class="block w-full rounded-md border-0 py-1.5 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 ring-1 ring-inset">
+        </div>
+        <label class="block text-sm font-medium leading-6 text-gray-900">
+            Family Name
+        </label>
+        <div class="relative mt-2 rounded-md shadow-sm">
+            <input type="text" name="family_name" class="block w-full rounded-md border-0 py-1.5 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 ring-1 ring-inset">
+        </div>
+        <label class="block text-sm font-medium leading-6 text-gray-900">
+            Phone
+        </label>
+        <div class="relative mt-2 rounded-md shadow-sm">
+            <input type="text" name="phone" class="block w-full rounded-md border-0 py-1.5 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 ring-1 ring-inset">
+        </div>
+        <label class="block text-sm font-medium leading-6 text-gray-900">
+            Email
+        </label>
+        <div class="relative mt-2 rounded-md shadow-sm">
+            <input type="email" name="email" class="block w-full rounded-md border-0 py-1.5 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 ring-1 ring-inset">
+        </div>
+        <button type="submit" class="button-primary mt-4">Save</button>
+    </form>
+
+{{/inline}}
+{{> layouts/base}}

@@ -15,3 +15,6 @@ sea-orm = { version = "1.0.0-rc.3", features = [ "sqlx-postgres", "runtime-async
 sqlx = "0.7.1"
 sea-orm-migration = "1.0.0-rc.3"
 serde = { version = "1.0.197", features = ["derive"] }
+
+log = "0.4.21"
+env_logger = "0.11.3"

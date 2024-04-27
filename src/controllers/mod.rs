@@ -2,8 +2,9 @@ use rocket::http::Status;
 use rocket::Responder;
 use sea_orm::DbErr;
 
-pub mod home;
 pub mod bakery;
+pub mod contact;
+pub mod home;
 
 #[derive(Responder)]
 pub struct SuccessResponse<T>(pub (Status, T));

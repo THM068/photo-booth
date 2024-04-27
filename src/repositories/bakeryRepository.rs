@@ -14,7 +14,7 @@ impl BakeryRepository for BakeryRepositoryImpl {
         unimplemented!()
     }
 
-     async fn create_bakery(&self, db: &DatabaseConnection) -> Result<i32, DbErr> {
+    async fn create_bakery(&self, db: &DatabaseConnection) -> Result<i32, DbErr> {
         let happy_bakery = bakery::ActiveModel {
             name: ActiveValue::Set("Happy Bakery".to_owned()),
             profit_margin: ActiveValue::Set(0.0),
@@ -22,10 +22,8 @@ impl BakeryRepository for BakeryRepositoryImpl {
         };
         let result = Bakery::insert(happy_bakery).exec(db).await;
         match result {
-            Ok(result) => {
-                Ok(result.last_insert_id as i32)
-            },
-            Err(err) => Err(DbErr::from(err))
+            Ok(result) => Ok(result.last_insert_id as i32),
+            Err(err) => Err(DbErr::from(err)),
         }
     }
 

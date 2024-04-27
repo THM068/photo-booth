@@ -1,14 +1,14 @@
-use rocket::{delete, FromForm, get, post, put, State, uri};
+use crate::entities::{bakery, bakery::*, prelude::*};
+use crate::repositories::bakeryRepository::{BakeryRepository, BakeryRepositoryImpl};
 use rocket::form::Form;
 use rocket::http::hyper::Response;
-use sea_orm::DatabaseConnection;
-use crate::entities::{prelude::*, bakery::*, bakery};
-use sea_orm::*;
-use crate::repositories::bakeryRepository::{BakeryRepository, BakeryRepositoryImpl};
 use rocket::request::{self, FlashMessage, FromRequest, Request};
 use rocket::response::Redirect;
-use rocket::serde::{Serialize};
+use rocket::serde::Serialize;
+use rocket::{delete, get, post, put, uri, FromForm, State};
 use rocket_dyn_templates::{context, Template};
+use sea_orm::DatabaseConnection;
+use sea_orm::*;
 
 const LIST_BAKERIES_VIEWS: &str = "bakeries";
 
@@ -29,14 +29,9 @@ pub async fn create(db: &State<DatabaseConnection>, bakery: Form<BakeryDTO>) -> 
     };
     let result = Bakery::insert(happy_bakery).exec(db).await;
     match result {
-        Ok(result) => {
-            Redirect::to(uri!("/api/bakery"))
-        },
-        Err(err) => {
-            Redirect::to(uri!("/api/bakery"))
-        }
+        Ok(result) => Redirect::to(uri!("/api/bakery")),
+        Err(err) => Redirect::to(uri!("/api/bakery")),
     }
-
 }
 
 #[get("/<id>")]
@@ -53,25 +48,32 @@ pub async fn delete(id: u32) -> String {
 pub async fn index(db: &State<DatabaseConnection>) -> Template {
     let db = db as &DatabaseConnection;
     let bakeries = Bakery::find().all(db).await;
-
+    log::info!("Bakeries: {:?}", bakeries);
     match bakeries {
         Ok(result) => {
-            let bakery_list = result.iter().map(|b| {
-                BakeryDTO{
+            let bakery_list = result
+                .iter()
+                .map(|b| BakeryDTO {
                     name: b.name.to_owned(),
-                    profit_margin: b.profit_margin
-                }
-            }).collect::<Vec<_>>();
-            Template::render(LIST_BAKERIES_VIEWS, context! {
-                bakeries: bakery_list
+                    profit_margin: b.profit_margin,
                 })
+                .collect::<Vec<_>>();
+            Template::render(
+                LIST_BAKERIES_VIEWS,
+                context! {
+                bakeries: bakery_list
+                },
+            )
         }
         Err(err) => {
             println!("Failed");
-            Template::render(LIST_BAKERIES_VIEWS, context! {
+            Template::render(
+                LIST_BAKERIES_VIEWS,
+                context! {
 
                  error: "Error fetching bakeries"
-                })
+                },
+            )
         }
     }
 }
