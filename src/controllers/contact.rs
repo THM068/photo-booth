@@ -8,11 +8,60 @@ use sea_orm::*;
 
 use crate::repositories::{Contact_DTO, Contact_Entity};
 
+#[get("/<id>")]
+pub async fn show_contact(id: i32, db: &State<DatabaseConnection>) -> Template {
+    let db = db as &DatabaseConnection;
+    let contact_result = Contact::find_by_id(id).one(db).await;
+
+    match contact_result {
+        Ok(contactOption) => match contactOption {
+            Some(contact) => {
+                println!("Contact found {:?}", contact.id);
+                let contact_entity = Contact_Entity {
+                    id: contact.id,
+                    given_name: contact.given_name.to_owned(),
+                    family_name: contact.family_name.to_owned(),
+                    phone: contact.phone.to_owned(),
+                    email: contact.email.to_owned(),
+                };
+                println!("Contact found {:?}", contact_entity.given_name);
+                return Template::render(
+                    "contact_show",
+                    context! {
+                        title: "Contact",
+                        contact: contact_entity
+                    },
+                );
+            }
+            None => {
+                println!("Contact not found");
+                Template::render(
+                    "contact_show",
+                    context! {
+                        title: "Contact",
+                        message: "Contact not found."
+                    },
+                )
+            }
+        },
+        Err(error) => {
+            println!("Contact not found 2");
+            Template::render(
+                "contact_show",
+                context! {
+                    title: "Contact",
+                    message: "Error loading contact."
+                },
+            )
+        }
+    }
+}
+
 #[get("/?<q>")]
 pub async fn contact_list(
     db: &State<DatabaseConnection>,
     flash: Option<FlashMessage<'_>>,
-    q: Option<String>
+    q: Option<String>,
 ) -> Template {
     let message = flash.map_or_else(|| String::default(), |msg| msg.message().to_string());
     let db = db as &DatabaseConnection;
@@ -22,8 +71,8 @@ pub async fn contact_list(
                 .filter(contact::Column::GivenName.contains(query))
                 .all(db)
                 .await
-        },
-        None => Contact::find().all(db).await
+        }
+        None => Contact::find().all(db).await,
     };
 
     if let Ok(result) = contacts {
@@ -73,12 +122,8 @@ pub async fn delete_contact(id: i32, db: &State<DatabaseConnection>) -> String {
     let delete_result = Contact::delete_by_id(id).exec(db).await;
 
     match delete_result {
-        Ok(_) => {
-            "".to_string()
-        },
-        Err(_) => {
-            "".to_string()
-        }
+        Ok(_) => "".to_string(),
+        Err(_) => "".to_string(),
     }
 }
 #[post("/save", data = "<contact_form>")]

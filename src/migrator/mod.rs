@@ -4,6 +4,7 @@ pub mod m20220101_000001_create_bakery_table;
 pub mod m20220101_000002_create_chef_table;
 
 pub mod m20220101_000003_create_contact_table;
+pub mod m20220101_000004_create_user_table;
 
 pub struct Migrator;
 
@@ -14,6 +15,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20220101_000001_create_bakery_table::Migration),
             Box::new(m20220101_000002_create_chef_table::Migration),
             Box::new(m20220101_000003_create_contact_table::Migration),
+            Box::new(m20220101_000004_create_user_table::Migration),
         ]
     }
 }

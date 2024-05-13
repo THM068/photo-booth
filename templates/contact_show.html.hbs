@@ -1,0 +1,20 @@
+{{#*inline "page"}}
+
+    <h1 th:text="|${contact.givenName} ${contact.familyName}|"
+        class="text-base font-semibold leading-6 text-gray-900">
+        {{contact.given_name}} {{contact.family_name}}
+    </h1>
+
+    <div>
+        <div>Phone: <span>{{contact.phone}}</span></div>
+        <div>Email: <span></span>{{contact.email}}</div>
+    </div>
+
+    <div class="flex items-center gap-4 mt-4">
+        <a th:href="@{/contacts/{id}/edit(id=${contact.id.value()})}"
+           class="button-primary">Edit</a>
+        <a th:href="@{/contacts}"
+           class="button-secondary">Back</a>
+    </div>
+{{/inline}}
+{{> layouts/base}}

@@ -22,7 +22,10 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::Sh
             routes![
                 controllers::home::index,
                 controllers::home::about,
-                controllers::home::url_shortener
+                controllers::home::url_shortener,
+                controllers::authentication::login,
+                controllers::register::sign_up,
+                controllers::register::register,
             ],
         )
         .mount(
@@ -32,6 +35,7 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_rocket::Sh
                 controllers::contact::new_contact,
                 controllers::contact::save_contact,
                 controllers::contact::delete_contact,
+                controllers::contact::show_contact,
             ],
         )
         .mount(

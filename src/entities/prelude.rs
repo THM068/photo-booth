@@ -3,3 +3,4 @@
 pub use super::bakery::Entity as Bakery;
 pub use super::chef::Entity as Chef;
 pub use super::contact::Entity as Contact;
+pub use super::user::Entity as User;
