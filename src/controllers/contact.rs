@@ -167,3 +167,12 @@ pub async fn save_contact(
         },
     ))
 }
+#[get("/work-cation")]
+pub async fn work_cation() -> Template {
+    Template::render(
+        "work_cation",
+        context! {
+            title: "Work-cation"
+        },
+    )
+}

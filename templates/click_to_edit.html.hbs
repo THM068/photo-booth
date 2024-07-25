@@ -1,0 +1,15 @@
+{{#*inline "page"}}
+    <h3>Click to Edit</h3>
+    {{# with contact}}
+        <div hx-target="this" hx-swap="outerHTML">
+            <div><label>First Name</label>: {{name}}</div>
+            <div><label>Last Name</label>: {{surname}}</div>
+            <div><label>Email</label>: {{email}}</div>
+            <button hx-get="/examples/click-to-edit/1" class="btn primary">
+                Click To Edit
+            </button>
+        </div>
+    {{/with}}
+
+{{/inline}}
+{{> layouts/main}}

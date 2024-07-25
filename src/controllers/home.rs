@@ -1,12 +1,16 @@
+use rocket::response::stream::TextStream;
+use rocket::tokio::time::{self, Duration};
 use rocket::{catch, get, Request};
 use rocket_dyn_templates::{context, Template};
 
 #[get("/")]
 pub fn index() -> Template {
+    let names = vec!["Alice", "Bob", "Charlie"];
     Template::render(
         "index",
         context! {
-            title: "Home"
+            title: "Home",
+            names: names
         },
     )
 }
@@ -34,4 +38,15 @@ pub fn url_shortener() -> Template {
 #[catch(404)]
 pub fn not_found(req: &Request) -> String {
     format!("Oh no! We couldn't find the requested path '{}'", req.uri())
+}
+
+#[get("/infinite-hellos")]
+pub fn streamer() -> TextStream![&'static str] {
+    TextStream! {
+        let mut interval = time::interval(Duration::from_secs(1));
+        loop {
+            yield "hello";
+            interval.tick().await;
+        }
+    }
 }

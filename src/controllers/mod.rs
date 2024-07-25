@@ -6,8 +6,10 @@ use serde::Deserialize;
 pub mod authentication;
 pub mod bakery;
 pub mod contact;
+pub mod examples;
 pub mod home;
 pub mod register;
+mod views;
 
 #[derive(Responder)]
 pub struct SuccessResponse<T>(pub (Status, T));
@@ -24,7 +26,7 @@ impl From<DbErr> for ErrorResponse {
 }
 
 #[derive(FromForm)]
-struct User_Form <'r>{
+struct User_Form<'r> {
     #[field(validate = len(1..))]
     email: &'r str,
     #[field(validate = len(1..))]
