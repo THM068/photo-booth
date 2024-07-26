@@ -7,7 +7,7 @@ edition = "2021"
 rocket = { version = "0.5.0"}
 shuttle-rocket = "0.47.0"
 shuttle-runtime = "0.47.0"
-shuttle-shared-db = { version = "0.43.0", features = ["postgres",  "sqlx"] }
+shuttle-shared-db = { version = "0.47.0", features = ["postgres",  "sqlx"] }
 tokio = "1.26.0"
 #shuttle-seaorm = {git = "https://github.com/joshua-mo-143/shuttle-seaorm.git"}
 rocket_dyn_templates = {features = ["handlebars"], version = "0.1.0"}

@@ -3382,28 +3382,6 @@ dependencies = [
 
 [[package]]
 name = "shuttle-common"
-version = "0.43.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5367bffb2a9788af483024aaa3a7efc52f901516ef007eb82f739eb7ba609c5f"
-dependencies = [
- "anyhow",
- "chrono",
- "comfy-table",
- "crossterm 0.27.0",
- "http",
- "semver",
- "serde",
- "serde_json",
- "strum 0.26.2",
- "tracing",
- "tracing-subscriber",
- "url",
- "uuid",
- "zeroize",
-]
-
-[[package]]
-name = "shuttle-common"
 version = "0.47.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "31f26e99a8921bb0824d0cb5fa7c2fe077d7b0476634c9b3c99f775ba94b468d"
@@ -3439,7 +3417,7 @@ dependencies = [
  "futures-core",
  "prost",
  "prost-types",
- "shuttle-common 0.47.0",
+ "shuttle-common",
  "tonic",
 ]
 
@@ -3465,29 +3443,15 @@ dependencies = [
  "serde",
  "serde_json",
  "shuttle-codegen",
- "shuttle-common 0.47.0",
+ "shuttle-common",
  "shuttle-proto",
- "shuttle-service 0.47.0",
+ "shuttle-service",
  "strfmt",
  "tokio",
  "tokio-stream",
  "tokio-util",
  "tonic",
  "tracing-subscriber",
-]
-
-[[package]]
-name = "shuttle-service"
-version = "0.43.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c41b682b8639915d01f6b9b5bff76afc8b67d553b8199d0364bd4675397b06d"
-dependencies = [
- "anyhow",
- "async-trait",
- "serde",
- "shuttle-common 0.43.0",
- "strfmt",
- "thiserror",
 ]
 
 [[package]]
@@ -3499,22 +3463,22 @@ dependencies = [
  "anyhow",
  "async-trait",
  "serde",
- "shuttle-common 0.47.0",
+ "shuttle-common",
  "strfmt",
  "thiserror",
 ]
 
 [[package]]
 name = "shuttle-shared-db"
-version = "0.43.0"
+version = "0.47.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1d85e6b0abe94c32a5715c40c53f5a131eab6fcee931d7d9231e91f3664c0c9e"
+checksum = "ee6cde7295ee3177747c075bcc60248fbfd0f4d532eee2b0f76f5ef71f08fb58"
 dependencies = [
  "async-trait",
  "diesel-async",
  "serde",
  "serde_json",
- "shuttle-service 0.43.0",
+ "shuttle-service",
  "sqlx",
 ]
 
